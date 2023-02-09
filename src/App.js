@@ -1,23 +1,63 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
+
+function loadScript(src) {
+  return new Promise((resolve) => {
+    const script = document.createElement('script')
+    script.src = src
+    script.onload = () => {
+      resolve(true)
+    }
+    script.onerror = () => {
+      resolve(false)
+    }
+    document.body.appendChild(script)
+  })
+}
+
 
 function App() {
+
+  async function displayIncreasingly() {
+    const res = await loadScript('https://usaincreasingly.increasingly.co/Clients/opi-vite/increasingly.js')
+
+    if (!res) {
+      alert('Increasingly Failed To Load!')
+      return
+    }
+
+    const options = {
+      clientId: "1234",
+      productId: "2323",
+      variantId: '2323'
+    }
+
+    const increasinglyObject = new window.Increasingly(options)
+    increasinglyObject.initialize()
+  }
+
+  useEffect(() => {
+    displayIncreasingly()
+  }, [])
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main>
+        <nav>Navbar</nav>
+        <div className="container">
+          <div class='grid-children'>OPI Nailpolish</div>
+          <div class='grid-children'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, dignissimos? Culpa quos, quia saepe ipsum veritatis facere, totam obcaecati quidem tenetur sit error eaque eligendi quis animi, eius laudantium aperiam.
+            Iste libero repellendus ad voluptatibus! Eum, earum impedit adipisci architecto perferendis minima dolor ut harum quasi reiciendis nesciunt iste! Quo possimus praesentium sint hic. Eaque iure adipisci error aliquid itaque.
+            Explicabo fuga deleniti corporis reprehenderit, placeat sit accusantium aperiam voluptatum pariatur perspiciatis natus dicta dolor quos! Quidem excepturi voluptate consequatur sunt cupiditate dicta, nisi dignissimos dolores itaque minus provident repudiandae.
+            Eius asperiores sunt deserunt quo ab harum consequatur repellendus. Voluptates nihil aspernatur earum est quae quos sapiente magnam at repudiandae hic labore repellendus nam repellat eaque officia, exercitationem assumenda delectus.
+            Maxime molestias, nostrum recuatur illum ab architecto vitae doloribus non, dolorem sint voluptatum quo ut fuga quis natus voluptas.
+            Quibusdam quod qui fuga incidunt tempora quae hic cum accusamus rerum. Earum nesciunt, asperiores, veritatis temporibus eum unde voluptas explicabo qui eius, fuga labore eos a odio. Numquam, nam doloremque.</div>
+        </div>
+        <div id="increasingly_root"></div>
+        <footer>footer</footer>
+      </main>
     </div>
   );
 }
