@@ -19,7 +19,7 @@ function loadScript(src) {
 function App() {
 
   async function displayIncreasingly() {
-    // Call our script asyncgronously
+    // Call our script asynchronously
     const res = await loadScript('https://usaincreasingly.increasingly.co/Clients/opi-vite/increasingly.js')
 
     // If it fails we can stop here
@@ -28,10 +28,10 @@ function App() {
       return
     }
 
-    // This is sample payload object where we can pass productId & other information which we require us to identify
+    // This is sample payload object where we can pass productId & other information which we require us to identify the product details
     const options = {
       clientId: "1234",
-      productId: "2323",
+      productId: "OPI-12345",
     }
 
     // using Increasingly function you can create new instance of our object and pass the payload
@@ -39,6 +39,8 @@ function App() {
 
     // We can initialize our app using initialize function on our instance
     increasinglyObject.initialize()
+
+    // After initialization we will process the details and display bundles
   }
 
   useEffect(() => {
