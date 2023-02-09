@@ -19,24 +19,30 @@ function loadScript(src) {
 function App() {
 
   async function displayIncreasingly() {
+    // Call our script asyncgronously
     const res = await loadScript('https://usaincreasingly.increasingly.co/Clients/opi-vite/increasingly.js')
 
+    // If it fails we can stop here
     if (!res) {
       alert('Increasingly Failed To Load!')
       return
     }
 
+    // This is sample payload object where we can pass productId & other information which we require us to identify
     const options = {
       clientId: "1234",
       productId: "2323",
-      variantId: '2323'
     }
 
+    // using Increasingly function you can create new instance of our object and pass the payload
     const increasinglyObject = new window.Increasingly(options)
+
+    // We can initialize our app using initialize function on our instance
     increasinglyObject.initialize()
   }
 
   useEffect(() => {
+    // Load Once Using Your Custom Function
     displayIncreasingly()
   }, [])
 
