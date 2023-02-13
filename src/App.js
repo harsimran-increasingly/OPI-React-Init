@@ -30,8 +30,8 @@ function App() {
 
     // This is sample payload object where we can pass productId & other information which we require us to identify the product details
     const options = {
-      clientId: "1234",
-      productId: "OPI-12345",
+      clientId: "o9I0uK",
+      productIds: ["99350039241"],
     }
 
     // using Increasingly function you can create new instance of our object and pass the payload
